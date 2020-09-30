@@ -2,6 +2,7 @@
 //create store to connect to the api
 const bookmarks = [];
 const filter = 1;
+const error = null;
 
 //create functions to manipulate the data of the api
 
@@ -19,6 +20,10 @@ const deleteBookmark = function(id) {
   this.bookmarks = this.bookmarks.filter(bookmark => bookmark.id !== id);
 }
 
+const setError = function(error){
+  this.error = error;
+}
+
 //export functions to index.js
 export default{
   addBookmark,
@@ -26,4 +31,6 @@ export default{
   findById,
   deleteBookmark,
   filter,
+  setError,
+  error,
 };

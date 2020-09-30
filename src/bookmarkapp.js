@@ -10,9 +10,11 @@ const generateHtmlString = function () {
   return `<header>
     <label for="heading"></label>
     <div id="main" class="container">
-       <h2>Bookmark it!</h2>
+    
+        <h2>Bookmark it!</h2>
         <form id="bookmark-container">
         <fieldset>
+        <p>${store.error?store.error:""}</p>
         <label for="bookmark-input">Bookmark:<br></label>
         <input id="bookmark-input" type="text" placeholder="Bookmark Name">
         <div id="url-container">
@@ -67,13 +69,29 @@ const addbtn = function () {
 
     api
       .createItem(bookmark)
-      .then((res) => res.json())
+
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         store.addBookmark(data);
         render();
+      })
+      .catch((error) => {
+        store.setError(error.message);
+        renderError();
       });
   });
+};
+// const errorString = function () {
+//   return `<div>
+//   <p>${store.error}</p>
+//   </div>`;
+// };
+
+const renderError = function () {
+  if (store.error) {
+    render()
+    store.setError(null);
+  }     store.setError(null);
 };
 
 const handleDelete = function () {
@@ -81,10 +99,14 @@ const handleDelete = function () {
     let id = $(e.currentTarget).closest(".bookmark").attr("id");
     api
       .deleteItem(id)
-      .then((res) => res.json())
+
       .then(() => {
         store.deleteBookmark(id);
         render();
+      })
+      .catch((error) => {
+        store.setError(error.message);
+        renderError();
       });
   });
 };
@@ -175,5 +197,3 @@ export default {
   render,
   bindEvenListeners,
 };
-
-//generate form page

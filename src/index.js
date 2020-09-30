@@ -12,7 +12,6 @@ function main() {
     data.forEach((data) => store.addBookmark(data));
     bookmarkapp.render();
   });
-
   bookmarkapp.render();
   bookmarkapp.bindEvenListeners();
 };
