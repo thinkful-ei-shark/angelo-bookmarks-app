@@ -39,12 +39,6 @@ const listApiFetch = function (...args) {
 
 const getItems = function(){
   return listApiFetch(BASE_URL)
-  // .then(response => response.json())
-  // .then(data=> data)
-  // return Promise.resolve('A successful response');
-  // return fetch()
-  //       
-  //       .then(data => console.log("fetch-ajax-api"));
 }
 
 const createItem = function(bookmark){
