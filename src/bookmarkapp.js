@@ -112,7 +112,7 @@ const handleDelete = function () {
 };
 
 const filterBy = function () {
-  $("main").on("click", "select", function () {
+  $("main").on("change", "select", function () {
     const rating = $("select").val();
     if (rating) {
       store.filter = rating;
