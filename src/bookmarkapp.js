@@ -62,16 +62,13 @@ const addbtn = function () {
     // create description box within "filter by"
     let desc = $("#description-input").val();
     let rating = $("input[name = 'rate']:checked").val();
-    console.log(title, url, rating, desc);
     $("#bookmark-input").val("");
     $("#address-input").val("");
     const bookmark = { title: title, url: url, desc: desc, rating: rating };
 
     api
       .createItem(bookmark)
-
       .then((data) => {
-        // console.log(data);
         store.addBookmark(data);
         render();
       })
@@ -178,7 +175,6 @@ const generateBookmarkString = function (bookmarks) {
 function handleExpand() {
   $("main").on("click", ".bookmark", function (e) {
     let id = e.currentTarget.id;
-    console.log(id);
     let bookmark = store.findById(id);
     bookmark.expanded = !bookmark.expanded;
 
